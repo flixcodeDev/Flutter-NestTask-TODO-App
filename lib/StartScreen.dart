@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:nesttask/Auth/LoginPage.dart';
+import 'package:nesttask/Auth/AuthPage.dart';
 
 import 'CustomButton/customButton.dart';
 
@@ -45,9 +45,17 @@ class _StartScreenState extends State<Startscreen> {
               SizedBox(
                 height: 200,
               ),
-               CustomButton(bgcolor:Colors.deepPurpleAccent, onTap: () {
-                 Get.to(Loginpage());
-               }, text: "Let's Start", btnheight: MediaQuery.of(context).size.height *0.07,btnwidth: MediaQuery.of(context).size.width *9, fontsize: 18,textcolor:Colors.white ,)
+              CustomButton(
+                bgcolor: Colors.deepPurpleAccent,
+                onTap: () {
+                  Get.to(Authpage());
+                },
+                text: "Let's Start",
+                btnheight: MediaQuery.of(context).size.height * 0.07,
+                btnwidth: MediaQuery.of(context).size.width * 9,
+                fontsize: 18,
+                textcolor: Colors.white,
+              )
             ],
           ),
         ),
