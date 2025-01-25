@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nesttask/App_Pages/SearchPage.dart';
-import 'package:nesttask/App_Pages/UpcomingTask.dart';
-import 'package:nesttask/Auth/LoginPage.dart';
-
-import 'package:nesttask/CustomButton/BottomNavBar.dart';
 import 'package:nesttask/StartScreen.dart';
-
-import 'App_Pages/HomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home:Startscreen(),
+      home: Startscreen(),
     );
   }
 }
