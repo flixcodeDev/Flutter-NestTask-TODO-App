@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nesttask/App_Pages/HomePage.dart';
 import 'package:nesttask/CustomButton/BottomNavBar.dart';
 
 import 'package:nesttask/CustomButton/customButton.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../CustomButton/CustomTextField.dart';
 
@@ -15,11 +17,26 @@ class Authpage extends StatefulWidget {
 }
 
 class _AuthpageState extends State<Authpage> {
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
   final controller = TextEditingController();
+
   bool rememberMe = false;
   final _scrollController = ScrollController();
   final _focusNodePassword = FocusNode();
   var login = 0;
+
+  Future<void> register() async {
+    final response = await Supabase.instance.client.auth.signInWithPassword(
+        password: passController.text, email: emailController.text);
+    try {
+      if (response.user != null) {
+        Get.off(const Bottomnavbar());
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   void initState() {
