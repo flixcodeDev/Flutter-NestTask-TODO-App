@@ -19,6 +19,14 @@ class _AuthpageState extends State<Authpage> {
   bool rememberMe = false;
   final _scrollController = ScrollController();
   final _focusNodePassword = FocusNode();
+  final _emailController= TextEditingController();
+  final _passwordController= TextEditingController();
+  final _usernameController= TextEditingController();
+  final _phoneController= TextEditingController();
+  final _sectionController= TextEditingController();
+
+
+
   var login = 0;
 
   @override
@@ -63,7 +71,8 @@ class _AuthpageState extends State<Authpage> {
                   height: MediaQuery.of(context).size.height * 0.08,
                 ),
                 Text(
-                  'Login Your\nAccount',
+                  login==0 ?
+                  'Login Your\nAccount': 'Create Your\nAccount',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -73,7 +82,8 @@ class _AuthpageState extends State<Authpage> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Text(
-                  'Sign-in up to enjoy the best managing experience',
+                  login==0?
+                  'Login to enjoy the best managing experience':'Sign-in up to enjoy the best managing experience' ,
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
                 SizedBox(
@@ -115,6 +125,7 @@ class _AuthpageState extends State<Authpage> {
                                         color: Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(18)),
+                                    dividerHeight: 0,
                                     indicatorColor: Colors.white,
                                     labelStyle: TextStyle(
                                         fontSize: 18,
@@ -139,7 +150,7 @@ class _AuthpageState extends State<Authpage> {
                             ? Column(
                                 children: [
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _emailController,
                                     hintText: "DIU_Email",
                                     prefixIcon: Icon(
                                       Icons.mail_outline_outlined,
@@ -151,7 +162,7 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _passwordController,
                                     hintText: "Password",
                                     prefixIcon: Icon(
                                       Icons.lock_outlined,
@@ -163,14 +174,14 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _sectionController,
                                     hintText: "Section",
                                     prefixIcon: Icon(
                                       Icons.people_alt_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
                                     suffixIcon:
-                                        Icon(Icons.chevron_left_outlined),
+                                        Icon(Icons.arrow_drop_down),
                                   ),
                                   SizedBox(
                                       height:
@@ -231,7 +242,7 @@ class _AuthpageState extends State<Authpage> {
                             : Column(
                                 children: [
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _usernameController,
                                     hintText: "Full Name",
                                     prefixIcon: Icon(
                                       Icons.person_2_outlined,
@@ -243,7 +254,7 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _emailController,
                                     hintText: "DIU_Email",
                                     prefixIcon: Icon(
                                       Icons.mail_outline_outlined,
@@ -255,7 +266,7 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _passwordController,
                                     hintText: "Password",
                                     prefixIcon: Icon(
                                       Icons.lock_outlined,
@@ -267,7 +278,7 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _phoneController,
                                     hintText: "Phone Number",
                                     prefixIcon: Icon(
                                       Icons.call_outlined,
@@ -279,7 +290,7 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _sectionController,
                                     hintText: "Section",
                                     prefixIcon: Icon(
                                       Icons.people_alt_outlined,

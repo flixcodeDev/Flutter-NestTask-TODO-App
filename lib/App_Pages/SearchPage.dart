@@ -25,7 +25,7 @@ class _SearchpageState extends State<Searchpage> {
           IconButton(
               onPressed: () {},
               icon: Icon(
-                Icons.menu_outlined,
+                Icons.list,
                 size: 30,
               ))
         ],

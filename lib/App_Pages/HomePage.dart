@@ -1,7 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nesttask/App_Pages/SearchPage.dart';
 import 'package:nesttask/App_Pages/UpcomingTask.dart';
 import 'package:nesttask/CustomButton/CustomContainer.dart';
+
+import 'package:nesttask/CustomButton/NavigationDrawer.dart';
 
 import 'package:nesttask/CustomButton/TaskContainer.dart';
 
@@ -19,30 +23,36 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Colors.white,
+      drawer: NavDrawerPage(),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.account_circle,
-          size: 30,
+        leading: IconButton(
+          onPressed: (){
+
+            },
+          icon :Icon(Icons.account_circle,
+          size: 30,)
+
         ),
         actions: [
           IconButton(
               onPressed: () {},
               icon: Icon(
-                Icons.menu_outlined,
+                Icons.list,
                 size: 30,
               ))
         ],
       ),
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(8.0),
             child: Stack(children: [
               SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "Hello, Sakib!",
@@ -66,11 +76,11 @@ class _HomepageState extends State<Homepage> {
                     ),
                     Row(
                       children: [
-                        Customcontainer(title: "My Task"),
+                        Customcontainer(title: "My Task",onTap: (){},),
                         SizedBox(width: MediaQuery.of(context).size.width * 0.04),
-                        Customcontainer(title: "In-Progress"),
+                        Customcontainer(title: "In-Progress",onTap: (){},),
                         SizedBox(width: MediaQuery.of(context).size.width * 0.04),
-                        Customcontainer(title: "Completed"),
+                        Customcontainer(title: "Completed",onTap: (){},),
                       ],
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
