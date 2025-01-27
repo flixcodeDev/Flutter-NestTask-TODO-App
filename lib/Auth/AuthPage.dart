@@ -24,6 +24,14 @@ class _AuthpageState extends State<Authpage> {
   bool rememberMe = false;
   final _scrollController = ScrollController();
   final _focusNodePassword = FocusNode();
+  final _emailController= TextEditingController();
+  final _passwordController= TextEditingController();
+  final _usernameController= TextEditingController();
+  final _phoneController= TextEditingController();
+  final _sectionController= TextEditingController();
+
+
+
   var login = 0;
 
   Future<void> register() async {
@@ -80,8 +88,9 @@ class _AuthpageState extends State<Authpage> {
                   height: MediaQuery.of(context).size.height * 0.08,
                 ),
                 Text(
-                  login == 0 ? 'Login Your\nAccount' : "Register New\nAccount",
-                  style: const TextStyle(
+                  login==0 ?
+                  'Login Your\nAccount': 'Create Your\nAccount',
+                  style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
@@ -90,10 +99,9 @@ class _AuthpageState extends State<Authpage> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Text(
-                  login == 0
-                      ? 'Login to enjoy the best managing experience'
-                      : 'Sign-in up to enjoy the best managing experience',
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                  login==0?
+                  'Login to enjoy the best managing experience':'Sign-in up to enjoy the best managing experience' ,
+                  style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.04,
@@ -102,15 +110,14 @@ class _AuthpageState extends State<Authpage> {
             ),
             Expanded(
               child: Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(35),
                         topLeft: Radius.circular(35))),
                 child: SingleChildScrollView(
-                  //  controller: _scrollController,
-                  //  physics: const ClampingScrollPhysics(),
+                  controller: _scrollController,
+                  physics: const ClampingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
@@ -119,21 +126,25 @@ class _AuthpageState extends State<Authpage> {
                             height: MediaQuery.of(context).size.height * 0.02),
                         Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: EdgeInsets.all(10),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.7,
                               height: MediaQuery.of(context).size.height * 0.07,
                               decoration: BoxDecoration(
                                 color: Colors.black.withOpacity(.1),
                                 borderRadius:
-                                    const BorderRadius.all(Radius.circular(20)),
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: DefaultTabController(
                                   length: 2,
                                   child: TabBar(
-                                    indicatorColor: Colors.transparent,
+                                    indicator: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(18)),
                                     dividerHeight: 0,
-                                    labelStyle: const TextStyle(
+                                    indicatorColor: Colors.white,
+                                    labelStyle: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                     labelColor: Colors.black,
@@ -143,21 +154,8 @@ class _AuthpageState extends State<Authpage> {
                                       setState(() {});
                                     },
                                     tabs: [
-                                      Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(11)),
-                                          child: const Tab(text: "  Login  ")),
-                                      Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(11)),
-                                          width: double.infinity,
-                                          child:
-                                              const Tab(text: "  Register  "))
+                                      Tab(text: "  Login  "),
+                                      Tab(text: "  Register  ")
                                     ],
                                   )),
                             ),
@@ -169,9 +167,9 @@ class _AuthpageState extends State<Authpage> {
                             ? Column(
                                 children: [
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _emailController,
                                     hintText: "DIU_Email",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.mail_outline_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -181,9 +179,9 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _passwordController,
                                     hintText: "Password",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.lock_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -193,14 +191,14 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _sectionController,
                                     hintText: "Section",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.people_alt_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
                                     suffixIcon:
-                                        const Icon(Icons.chevron_left_outlined),
+                                        Icon(Icons.arrow_drop_down),
                                   ),
                                   SizedBox(
                                       height:
@@ -230,7 +228,7 @@ class _AuthpageState extends State<Authpage> {
                                               0.1),
                                       TextButton(
                                           onPressed: () {},
-                                          child: const Text(
+                                          child: Text(
                                             "Forget Password ?",
                                             style: TextStyle(
                                                 color: Colors.deepPurpleAccent,
@@ -245,7 +243,7 @@ class _AuthpageState extends State<Authpage> {
                                               0.03),
                                   CustomButton(
                                       onTap: () {
-                                        Get.to(const Bottomnavbar());
+                                        Get.to(Bottomnavbar());
                                       },
                                       text: "Login",
                                       fontsize: 18,
@@ -261,9 +259,9 @@ class _AuthpageState extends State<Authpage> {
                             : Column(
                                 children: [
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _usernameController,
                                     hintText: "Full Name",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.person_2_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -273,9 +271,9 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _emailController,
                                     hintText: "DIU_Email",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.mail_outline_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -285,9 +283,9 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _passwordController,
                                     hintText: "Password",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.lock_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -297,9 +295,9 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _phoneController,
                                     hintText: "Phone Number",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.call_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
@@ -309,14 +307,13 @@ class _AuthpageState extends State<Authpage> {
                                           MediaQuery.of(context).size.height *
                                               0.03),
                                   CustomTextField(
-                                    controller: controller,
+                                    controller: _sectionController,
                                     hintText: "Section",
-                                    prefixIcon: const Icon(
+                                    prefixIcon: Icon(
                                       Icons.people_alt_outlined,
                                       color: Colors.deepPurpleAccent,
                                     ),
-                                    suffixIcon:
-                                        const Icon(Icons.arrow_drop_down),
+                                    suffixIcon: Icon(Icons.arrow_drop_down),
                                   ),
                                   SizedBox(
                                       height:
