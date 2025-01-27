@@ -83,7 +83,7 @@ class NavDrawerPage extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings & account'),
+            title: Text('Logout',style: TextStyle(color: Colors.red),),
             onTap: () {},
           ),
         ],

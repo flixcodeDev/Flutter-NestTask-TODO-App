@@ -17,8 +17,8 @@ class Authpage extends StatefulWidget {
 }
 
 class _AuthpageState extends State<Authpage> {
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
+  //final emailController = TextEditingController();
+  //final passController = TextEditingController();
   final controller = TextEditingController();
 
   bool rememberMe = false;
@@ -36,7 +36,7 @@ class _AuthpageState extends State<Authpage> {
 
   Future<void> register() async {
     final response = await Supabase.instance.client.auth.signInWithPassword(
-        password: passController.text, email: emailController.text);
+        password: _passwordController.text, email: _emailController.text);
     try {
       if (response.user != null) {
         Get.off(const Bottomnavbar());
