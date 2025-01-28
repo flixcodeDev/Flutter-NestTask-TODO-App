@@ -8,16 +8,21 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
-  CustomTextField(
-      {super.key,
-        required this.controller,
-        this.keyboardType,
-        this.isObscureText = false,
-        this.obscuringCharacter = "*",
-        required this.hintText,
-        this.prefixIcon,
-        this.suffixIcon});
+  CustomTextField({
+    super.key,
+    required this.controller,
+    this.keyboardType,
+    this.isObscureText = false,
+    this.obscuringCharacter = "*",
+    required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.validator,
+    this.onChanged,
+  });
 
   // final apicontroller = Get.put(ApiController());
   @override
@@ -53,7 +58,18 @@ class CustomTextField extends StatelessWidget {
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
-              ))),
+              )),
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 1.0,
+              )),
+          focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              borderSide: BorderSide(color: Colors.red, width: 1.0))),
+      validator: validator,
+      onChanged: onChanged,
     );
   }
 }

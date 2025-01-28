@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nesttask/App_Pages/HomePage.dart';
+import 'package:nesttask/Auth/AuthPage.dart';
 import 'package:nesttask/StartScreen.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Startscreen(),
+      home: Authpage(),
     );
   }
 }
