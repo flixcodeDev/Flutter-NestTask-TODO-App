@@ -24,13 +24,17 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: Colors.white,
       drawer: NavDrawerPage(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.account_circle,
-              size: 30,
-            )),
+        leading: Builder(builder: (context) {
+          return InkWell(
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child:Icon(Icons.account_circle,size: 30,)
+          );
+        }),
         actions: [
           IconButton(
               onPressed: () {},
@@ -73,17 +77,17 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     Customcontainer(
                       title: "My Task",
-                      onTap: () {},
+                      onTap: () {print("On Tab form My tasks");},
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                     Customcontainer(
                       title: "In-Progress",
-                      onTap: () {},
+                      onTap: () {print("Call form In progress");},
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                     Customcontainer(
                       title: "Completed",
-                      onTap: () {},
+                      onTap: () {print("Call form Complete");},
                     ),
                   ],
                 ),

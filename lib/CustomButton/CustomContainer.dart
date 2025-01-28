@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 class Customcontainer extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final void Function(String)? onChanged;
 
-  const Customcontainer({super.key, required this.title, required this.onTap});
+  const Customcontainer({super.key, required this.title, required this.onTap, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,13 @@ class Customcontainer extends StatelessWidget {
           children: [
             Text(title,style: TextStyle(color: Colors.black,fontWeight:FontWeight.w600,fontSize:13 ),
             ),
+
           ],
+
         ),
+
       ),
+
     );
   }
 }

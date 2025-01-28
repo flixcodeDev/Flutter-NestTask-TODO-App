@@ -45,10 +45,13 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return
+      Form(
       key: _key,
       child: Column(
+
         children: [
+
           CustomTextField(
             controller: _usernameController,
             hintText: "Full Name",
@@ -155,8 +158,8 @@ class _RegisterViewState extends State<RegisterView> {
 
                     final response = await instance.client.auth
                         .signInWithPassword(
-                            password: _passwordController.text,
-                            email: _emailController.text);
+                        password: _passwordController.text,
+                        email: _emailController.text);
                     if (response.user != null) {
                       isLoading = false;
                       Get.off(const Bottomnavbar());
@@ -183,7 +186,8 @@ class _RegisterViewState extends State<RegisterView> {
               btnheight: MediaQuery.of(context).size.height * 0.07,
               btnwidth: MediaQuery.of(context).size.width * 9)
         ],
-      ),
+      ) ,
+
     );
   }
 }

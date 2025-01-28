@@ -17,7 +17,8 @@ class _BottomnavbarState extends State<Bottomnavbar> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     Homepage(),
-    SizedBox(),
+    //SizedBox(),
+    TaskPage(),
     Searchpage(),
     NotificationPage()
     // Add corresponding screen for Notifications.

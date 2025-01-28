@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nesttask/CustomButton/NavigationDrawer.dart';
 
 import '../CustomButton/TaskContainer.dart';
 
@@ -14,13 +15,20 @@ class _SearchpageState extends State<Searchpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawerPage(),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.person_rounded,
-          size: 30,
-          color: Colors.black,
-        ),
+        leading: Builder(builder: (context) {
+          return InkWell(
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child:Icon(Icons.account_circle,size: 30,)
+          );
+        }),
         actions: [
           IconButton(
               onPressed: () {},
