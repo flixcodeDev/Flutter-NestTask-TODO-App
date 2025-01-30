@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:nesttask/Auth/AuthPage.dart';
+import 'package:nesttask/Auth/authgate.dart';
 
 import 'CustomButton/customButton.dart';
 
@@ -48,7 +49,7 @@ class _StartScreenState extends State<Startscreen> {
                 CustomButton(
                   bgcolor: Colors.deepPurpleAccent,
                   onTap: () {
-                    Get.to(Authpage());
+                    Get.to(AuthGate());
                   },
                   text: "Let's Start",
                   btnheight: MediaQuery.of(context).size.height * 0.07,

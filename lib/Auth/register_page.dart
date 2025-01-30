@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:nesttask/Auth/controllers/register_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../CustomButton/BottomNavBar.dart';
@@ -28,6 +29,8 @@ class _RegisterViewState extends State<RegisterView> {
 
   final _sectionController = TextEditingController();
 
+  final registerController = Get.put(RegisterController());
+
   final instance = Supabase.instance;
 
   final _key = GlobalKey<FormState>();
@@ -45,13 +48,10 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Form(
+    return Form(
       key: _key,
       child: Column(
-
         children: [
-
           CustomTextField(
             controller: _usernameController,
             hintText: "Full Name",
@@ -86,9 +86,9 @@ class _RegisterViewState extends State<RegisterView> {
                 return regex.hasMatch(email);
               }
 
-              if (!isValidEmail(value)) {
-                return "Please Enter DIU Provided Email.";
-              }
+              // if (!isValidEmail(value)) {
+              //   return "Please Enter DIU Provided Email.";
+              // }
               return null;
             },
           ),
@@ -150,44 +150,26 @@ class _RegisterViewState extends State<RegisterView> {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-          CustomButton(
-              onTap: () async {
-                if (_key.currentState!.validate()) {
-                  try {
-                    isLoading = true;
-
-                    final response = await instance.client.auth
-                        .signInWithPassword(
-                        password: _passwordController.text,
-                        email: _emailController.text);
-                    if (response.user != null) {
-                      isLoading = false;
-                      Get.off(const Bottomnavbar());
-                    }
-                  } on SocketException {
-                    Get.snackbar("Error", "No Internet");
-                    isLoading = false;
-                    print("Network Issue");
-                  } on TimeoutException {
-                    Get.snackbar("Error", "Time Out");
-                    isLoading = false;
-                  } catch (e) {
-                    isLoading = false;
-                    Get.snackbar("Error", "Something Went Wrong");
-                    print(isLoading);
-                    print(e);
+          Obx(() {
+            return CustomButton(
+                onTap: () async {
+                  if (_key.currentState!.validate()) {
+                    registerController.register(
+                        email: _emailController.text,
+                        password: _passwordController.text);
                   }
-                }
-              },
-              text: isLoading ? "Loading..." : "Register",
-              fontsize: 18,
-              textcolor: Colors.white,
-              bgcolor: Colors.deepPurpleAccent,
-              btnheight: MediaQuery.of(context).size.height * 0.07,
-              btnwidth: MediaQuery.of(context).size.width * 9)
+                },
+                text: registerController.isLoading.value
+                    ? "Loading..."
+                    : "Register",
+                fontsize: 18,
+                textcolor: Colors.white,
+                bgcolor: Colors.deepPurpleAccent,
+                btnheight: MediaQuery.of(context).size.height * 0.07,
+                btnwidth: MediaQuery.of(context).size.width * 9);
+          })
         ],
-      ) ,
-
+      ),
     );
   }
 }

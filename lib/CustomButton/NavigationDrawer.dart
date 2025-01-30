@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:nesttask/Auth/controllers/logout_controller.dart';
 
 class NavDrawerPage extends StatelessWidget {
-  const NavDrawerPage({super.key});
+  NavDrawerPage({super.key});
+
+  final logoutController = Get.put(LogoutController());
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -19,7 +23,8 @@ class NavDrawerPage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage('assets/images/avater.png'), // Replace with your image asset
+                  backgroundImage: AssetImage(
+                      'assets/images/avater.png'), // Replace with your image asset
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -83,8 +88,13 @@ class NavDrawerPage extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Logout',style: TextStyle(color: Colors.red),),
-            onTap: () {},
+            title: Text(
+              'Logout',
+              style: TextStyle(color: Colors.red),
+            ),
+            onTap: () {
+              logoutController.logout();
+            },
           ),
         ],
       ),
